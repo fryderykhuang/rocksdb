@@ -1256,6 +1256,11 @@ void rocksdb_flush_cf(
   SaveError(errptr, db->rep->Flush(options->rep, column_family->rep));
 }
 
+  void rocksdb_flushwal(rocksdb_t* db, bool sync,
+                   char** errptr) {
+  SaveError(errptr, db->rep->FlushWAL(sync));
+}
+
 void rocksdb_disable_file_deletions(
     rocksdb_t* db,
     char** errptr) {
@@ -2729,6 +2734,15 @@ void rocksdb_options_set_fifo_compaction_options(
     rocksdb_options_t* opt,
     rocksdb_fifo_compaction_options_t* fifo) {
   opt->rep.compaction_options_fifo = fifo->rep;
+}
+
+void rocksdb_options_set_manual_wal_flush(
+    rocksdb_options_t* opt, bool value) {
+  opt->rep.manual_wal_flush = value;
+}
+
+void rocksdb_options_set_two_write_queues(rocksdb_options_t* opt, bool value) {
+  opt->rep.two_write_queues = value;
 }
 
 char *rocksdb_options_statistics_get_string(rocksdb_options_t *opt) {
