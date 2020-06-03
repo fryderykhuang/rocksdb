@@ -407,7 +407,7 @@ extern ROCKSDB_LIBRARY_API void rocksdb_flush_cf(
     rocksdb_column_family_handle_t* column_family, char** errptr);
 
 extern ROCKSDB_LIBRARY_API void rocksdb_flushwal(
-    rocksdb_t* db, bool sync, char** errptr);
+    rocksdb_t* db, unsigned char sync, char** errptr);
 
 extern ROCKSDB_LIBRARY_API void rocksdb_disable_file_deletions(rocksdb_t* db,
                                                                char** errptr);
@@ -1773,9 +1773,9 @@ extern ROCKSDB_LIBRARY_API const char* rocksdb_pinnableslice_value(
     const rocksdb_pinnableslice_t* t, size_t* vlen);
 
 extern ROCKSDB_LIBRARY_API void rocksdb_options_set_manual_wal_flush(
-    rocksdb_options_t* opt, bool value);
+    rocksdb_options_t* opt, unsigned char value);
 extern ROCKSDB_LIBRARY_API void rocksdb_options_set_two_write_queues(
-    rocksdb_options_t* opt, bool value);
+    rocksdb_options_t* opt, unsigned char value);
 extern ROCKSDB_LIBRARY_API rocksdb_memory_consumers_t*
     rocksdb_memory_consumers_create();
 extern ROCKSDB_LIBRARY_API void rocksdb_memory_consumers_add_db(
